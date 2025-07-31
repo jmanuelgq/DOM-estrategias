@@ -1,42 +1,40 @@
-const libros = [
-  "Primer Libro",
-  "Segundo Libro",
-  "Tercero Libro",
-  "Cuarto Libro",
-  "Quinto Libro",
-  "Sexto Libro",
-  "Septimo Libro",
-  "Octavo Libro",
-  "Noveno Libro",
-];
+class List {
+  constructor(listId, titulo, listArray) {
+    const div = document.createElement("div");
+    div.classList.add(listId);
+    const ul = document.createElement("ul");
+    const h2 = document.createElement("h2");
+    document.body.append(div);
+    div.append(h2);
+    h2.textContent = titulo;
+    div.append(ul);
 
-const ul = document.getElementById("lista-libros");
+    const candidatos = listArray;
 
-libros.forEach((titulo) => {
-  const li = document.createElement("li");
-  li.style.color = "blue";
-  li.style.fontWeight = "bold";
-  li.textContent = titulo;
-  ul.appendChild(li);
-});
+    candidatos.forEach((candidato) => {
+      const li = document.createElement("li");
+      li.textContent = candidato;
+      ul.append(li);
+    });
 
-////////////// Eventphase ////////////////////////////
-// // Obtenemos todos los <li>
-// const items = ul.querySelectorAll("li");
-
-// // Agregamos el evento a cada uno
-// items.forEach((item) => {
-//   item.addEventListener("click", () => {
-//     item.classList.toggle("selected");
-//   });
-// });
-
-////////////// Event Delegation ///////////////////////
-const ullist = document.querySelector("#lista-libros");
-
-ullist.addEventListener("click", function (event) {
-  if (event.target.matches("li")) {
-    const card = event.target;
-    card.classList.toggle("selected");
+    ul.addEventListener("click", function (event) {
+      if (event.target.tagName === "LI") {
+        event.target.classList.toggle("selected");
+      }
+    });
   }
-});
+}
+
+const list2 = new List("listId", "Cual es tu postre favorito?", [
+  "Pie de limon",
+  "3 leches",
+  "leche asada",
+  "torta de chocolate",
+]);
+const list1 = new List("listId", "quien ganara las elecciones?", [
+  "Porky",
+  "Vizcarra",
+  "Antauro",
+  "Keiko",
+  "Butters",
+]);
