@@ -35,5 +35,3 @@ const list2 = createList("listId", "Cual es tu postre favorito?", [
   "leche asada",
   "torta de chocolate",
 ]);
-
-console.log(list1);
